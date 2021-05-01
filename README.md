@@ -19,40 +19,37 @@ Although the simulation may appear to be chaotic, it's actually deterministic, s
 
 Of course you could perform this simulation using pencil and paper, but it makes more fun when using a computer. For that case, I've implemented a *Game Of Life* simulator. Using a graphical user interface, you can set all the parameters (like world size or simulation speed) and watch your simulation going on. You can also fill the world with random cells and create/kill single cells by clicking on them. Every generation can be saved as a snapshot to an XML or JSON file.
 
-### Installing on Arch Linux
+### Compiling and Running
 
-If you are running Arch Linux, save the PKGBUILD file from the releases section to an empty directory. Inside this directory, simply run:
-
-    $ makepkg -sri
-
-Headway will be downloaded, compiled, packaged and installed automatically.
-
-### Installing on other Linux distributions
-
-To compile, run the following commands inside the project directory:
+Headway is implemented in C++ and QML. You can compile and run the app using Qt Creator, or you can execute the following commands inside the project directory:
 
     $ mkdir build
     $ cd build
-    $ cmake .. -DCMAKE_BUILD_TYPE=Release
+    $ qmake ../headway.pro
     $ make
+    $ ./headway
 
-You may need to install additional libraries and header files using your distribution's package manager. After successfully building, you can run Headway using `./headway` or you can install Headway on your system (which places it under */usr/bin/headway* or */usr/local/bin/headway*):
+You may need to install the latest Qt SDK first (5.9 or later). Other dependencies are not required. Headway should run on any desktop operating system supported by Qt (Linux, Windows, macOS).
 
-    # make install
+### Executing unit tests
 
-To uninstall Headway, use:
+To execute the unit tests, you need to pass additional arguments to `qmake`:
 
-    # xargs rm < install_manifest.txt
+    $ qmake "CONFIG += testconfig" ../headway.pro
+    $ make
+    $ ./headway-test
 
 ## Examples
 
-In the data directory, example files can be found. There is also a XSD schema file describing their format, which can be used for validation:
+In the *examples* directory, example files can be found. There is also a XSD schema file describing their format, which can be used for validation:
 
     $ xmllint --schema headway.xsd flower.xml --noout
     flower.xml validates
 
 ## Documentation
 
-If you have Doxygen installed on your system, you can generate source code documentation stored at *doc/html* using the `doc` target:
+If you have Doxygen installed on your system, you can generate source code documentation stored at *doc/html* by running
 
-    $ make doc
+    $ doxygen
+
+inside the project root directory.

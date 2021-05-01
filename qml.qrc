@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qtquickcontrols2.conf</file>
+        <file>MainWindow.qml</file>
+        <file>ControlToolBar.qml</file>
+        <file>Cell.qml</file>
+        <file>CellCanvas.qml</file>
+        <file>AboutDialog.qml</file>
+        <file>CreateWorldDialog.qml</file>
+        <file>CreateRandomCellsDialog.qml</file>
+    </qresource>
+</RCC>
