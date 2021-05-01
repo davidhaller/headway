@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<world width="30" height="30">
+  <cell x="12" y="11"/>
+  <cell x="13" y="11"/>
+  <cell x="15" y="11"/>
+  <cell x="16" y="11"/>
+  <cell x="12" y="12"/>
+  <cell x="13" y="12"/>
+  <cell x="15" y="12"/>
+  <cell x="16" y="12"/>
+  <cell x="13" y="13"/>
+  <cell x="15" y="13"/>
+  <cell x="11" y="14"/>
+  <cell x="13" y="14"/>
+  <cell x="15" y="14"/>
+  <cell x="17" y="14"/>
+  <cell x="11" y="15"/>
+  <cell x="13" y="15"/>
+  <cell x="15" y="15"/>
+  <cell x="17" y="15"/>
+  <cell x="11" y="16"/>
+  <cell x="12" y="16"/>
+  <cell x="16" y="16"/>
+  <cell x="17" y="16"/>
+</world>

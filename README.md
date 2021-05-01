@@ -1,0 +1,58 @@
+# Headway
+
+## Design
+
+In 1970, the British mathematician John Conway invented a cellular automaton called *Game Of Life*. The simulation takes place in a two-dimensional grid of cells represented as rectangles. A cell can either be *alive* or *dead*. This state can change from one generation to another, depending on the amount of neighbor cells. If a cell has two neighbors, it keeps its state, three neighbors means that the cell will be revived when it was dead before. A cell dies when it has zero, one or more than four neighbors. Therefore, life is threatened by overpopulation and aloneness.
+
+At every generation transition, the neighbors of each cell are counted and, depending on the result, the rules mentioned before are applied to each cell. There are several possible simulation outcomes which can occur, e.g:
+
+- death of all cells
+- all cells turn stable, so in every future generation no cell dies or gets revived
+- periodic movement patterns
+- chaotic fluctuation, no recognizable pattern
+
+Although the simulation may appear to be chaotic, it's actually deterministic, so the same starting parameters will always lead to the same simulation progress.
+
+![Headway Screenshot](screenshot.png?raw=true)
+
+## Implementation
+
+Of course you could perform this simulation using pencil and paper, but it makes more fun when using a computer. For that case, I've implemented a *Game Of Life* simulator. Using a graphical user interface, you can set all the parameters (like world size or simulation speed) and watch your simulation going on. You can also fill the world with random cells and create/kill single cells by clicking on them. Every generation can be saved as a snapshot to an XML or JSON file.
+
+### Installing on Arch Linux
+
+If you are running Arch Linux, save the PKGBUILD file from the releases section to an empty directory. Inside this directory, simply run:
+
+    $ makepkg -sri
+
+Headway will be downloaded, compiled, packaged and installed automatically.
+
+### Installing on other Linux distributions
+
+To compile, run the following commands inside the project directory:
+
+    $ mkdir build
+    $ cd build
+    $ cmake .. -DCMAKE_BUILD_TYPE=Release
+    $ make
+
+You may need to install additional libraries and header files using your distribution's package manager. After successfully building, you can run Headway using `./headway` or you can install Headway on your system (which places it under */usr/bin/headway* or */usr/local/bin/headway*):
+
+    # make install
+
+To uninstall Headway, use:
+
+    # xargs rm < install_manifest.txt
+
+## Examples
+
+In the data directory, example files can be found. There is also a XSD schema file describing their format, which can be used for validation:
+
+    $ xmllint --schema headway.xsd flower.xml --noout
+    flower.xml validates
+
+## Documentation
+
+If you have Doxygen installed on your system, you can generate source code documentation stored at *doc/html* using the `doc` target:
+
+    $ make doc
