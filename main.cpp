@@ -1,19 +1,14 @@
-#include <QtCore/QTextCodec>
-#include <QtGui/QGuiApplication>
+#include <QtWidgets/QApplication>
 #include <QtQml/QQmlApplicationEngine>
-#include <QtQml/QQmlContext>
 
 #include "world.hpp"
 
 int main(int argc, char** argv)
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
-
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
-    qmlRegisterType<Headway::World>("Headway", 4, 0, "World");
+    qmlRegisterType<Headway::World>("Headway", 4, 1, "World");
     engine.load(QUrl(QStringLiteral("qrc:/MainWindow.qml")));
 
     if (engine.rootObjects().isEmpty())

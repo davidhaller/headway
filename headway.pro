@@ -1,4 +1,4 @@
-QT += core xml qml quick testlib
+QT += core xml qml quick widgets
 CONFIG += c++14
 
 SOURCES += \
@@ -14,6 +14,7 @@ HEADERS += \
     world.hpp
 
 testconfig {
+    QT += testlib
     CONFIG += console testcase
     TARGET = headway-test
 

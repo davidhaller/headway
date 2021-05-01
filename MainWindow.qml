@@ -1,9 +1,10 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
-import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.3
 
-import Headway 4.0;
+import Qt.labs.platform 1.1
+
+import Headway 4.1;
 
 ApplicationWindow
 {
@@ -27,6 +28,7 @@ ApplicationWindow
     {
         id: errorDialog
         title: qsTr("Error")
+        buttons: MessageDialog.Close
     }
 
     AboutDialog
@@ -80,11 +82,12 @@ ApplicationWindow
     FileDialog
     {
         id: openDialog
-        selectExisting: true
+        fileMode: FileDialog.OpenFile
+        options: FileDialog.ReadOnly
         nameFilters: [qsTr("All files (*)"), qsTr("XML files (*.xml)"), qsTr("JSON files (*.json)")]
         onAccepted:
         {
-            biotope.loadFile(openDialog.fileUrl);
+            biotope.loadFile(openDialog.file);
             cellCanvas.refreshAll(biotope);
         }
     }
@@ -92,9 +95,9 @@ ApplicationWindow
     FileDialog
     {
         id: saveDialog
-        selectExisting: false
+        fileMode: FileDialog.SaveFile
         nameFilters: openDialog.nameFilters
-        onAccepted: biotope.saveFile(saveDialog.fileUrl)
+        onAccepted: biotope.saveFile(saveDialog.file)
     }
 
     MouseArea

@@ -29,7 +29,7 @@ Headway is implemented in C++ and QML. You can compile and run the app using Qt 
     $ make
     $ ./headway
 
-You may need to install the latest Qt SDK first (5.9 or later). Other dependencies are not required. Headway should run on any desktop operating system supported by Qt (Linux, Windows, macOS).
+You may need to install the latest Qt SDK first (6.0 or later). Other dependencies are not required. Headway should run on any desktop operating system supported by Qt (Linux, Windows, macOS).
 
 ### Executing unit tests
 
