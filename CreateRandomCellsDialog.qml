@@ -3,12 +3,9 @@ import QtQuick.Controls 2.2
 
 Dialog
 {
-    property alias instance: instance
     property alias grid: grid
-
     property alias randomSpinBox: randomSpinBox
 
-    id: instance
     modal: true
     title: qsTr("Create random cells")
 

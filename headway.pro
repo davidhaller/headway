@@ -1,4 +1,4 @@
-QT += core xml qml quick widgets
+QT += core xml qml quick quickcontrols2 widgets
 CONFIG += c++14
 
 SOURCES += \

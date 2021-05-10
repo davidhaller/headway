@@ -3,9 +3,6 @@ import QtQuick.Controls 2.2
 
 Dialog
 {
-    property alias instance: instance
-
-    id: instance
     width: parent.width
     height: parent.height
     modal: true
@@ -24,7 +21,7 @@ Dialog
             wrapMode: TextEdit.WordWrap
             textFormat: TextEdit.RichText
 
-            font.pointSize: 14
+            font.pointSize: 12
             text: "<h1>Headway 4.1</h1>"
                   + "<p>Copyright © 2021 David Haller (<a href=\"mailto:davidhaller@mailbox.org\">davidhaller@mailbox.org</a>)</p>"
                   + "<p>Licensed under the terms and conditions of the<br/>Apache License, Version 2.0.</p>"

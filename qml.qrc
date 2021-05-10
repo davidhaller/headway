@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>qtquickcontrols2.conf</file>
         <file>MainWindow.qml</file>
         <file>ControlToolBar.qml</file>
         <file>Cell.qml</file>

@@ -130,7 +130,7 @@ ApplicationWindow
         id: controlToolBar
         width: parent.width
 
-        newButton.onClicked: createWorldDialog.instance.open()
+        newButton.onClicked: createWorldDialog.open()
 
         randomButton.onClicked:
         {
@@ -138,7 +138,7 @@ ApplicationWindow
 
             createRandomCellsDialog.randomSpinBox.to = space;
             createRandomCellsDialog.randomSpinBox.value = space / 2;
-            createRandomCellsDialog.instance.open();
+            createRandomCellsDialog.open();
         }
 
         loadButton.onClicked: openDialog.open()
@@ -185,7 +185,7 @@ ApplicationWindow
             cellCanvas.refreshAll(biotope);
         }
 
-        aboutButton.onClicked: aboutDialog.instance.open()
+        aboutButton.onClicked: aboutDialog.open()
 
         cellLabel.text: biotope.count + (biotope.count === 1 ? qsTr(" cell") : qsTr(" cells"))
         generationsLabel.text: biotope.generations + (biotope.generations === 1 ? qsTr(" generation") : qsTr(" generations"))

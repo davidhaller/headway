@@ -3,13 +3,10 @@ import QtQuick.Controls 2.2
 
 Dialog
 {
-    property alias instance: instance
     property alias grid: grid
-
     property int worldWidth: widthSpinBox.value
     property int worldHeight: heightSpinBox.value
 
-    id: instance
     modal: true
     title: qsTr("Create a new world")
 
