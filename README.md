@@ -23,11 +23,13 @@ Of course you could perform this simulation using pencil and paper, but it makes
 
 Headway is implemented in C++ and QML. You can compile and run the app using Qt Creator, or you can execute the following commands inside the project directory:
 
-    $ mkdir build
-    $ cd build
-    $ qmake ../headway.pro
-    $ make
-    $ ./headway
+```bash
+$ mkdir build
+$ cd build
+$ qmake ../headway.pro
+$ make
+$ ./headway
+```
 
 You may need to install the latest Qt SDK first (6.0 or later). Other dependencies are not required. Headway should run on any desktop operating system supported by Qt (Linux, Windows, macOS).
 
@@ -35,21 +37,27 @@ You may need to install the latest Qt SDK first (6.0 or later). Other dependenci
 
 To execute the unit tests, you need to pass additional arguments to `qmake`:
 
-    $ qmake "CONFIG += testconfig" ../headway.pro
-    $ make
-    $ ./headway-test
+```bash
+$ qmake "CONFIG += testconfig" ../headway.pro
+$ make
+$ ./headway-test
+```
 
 ## Examples
 
 In the *examples* directory, example files can be found. There is also a XSD schema file describing their format, which can be used for validation:
 
-    $ xmllint --schema headway.xsd flower.xml --noout
-    flower.xml validates
+```bash
+$ xmllint --schema headway.xsd flower.xml --noout
+flower.xml validates
+```
 
 ## Documentation
 
 If you have Doxygen installed on your system, you can generate source code documentation stored at *doc/html* by running
 
-    $ doxygen
+```bash
+$ doxygen
+```
 
 inside the project root directory.
