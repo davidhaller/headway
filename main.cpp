@@ -7,6 +7,7 @@
 int main(int argc, char** argv)
 {
     QApplication app(argc, argv);
+    app.setApplicationName("Headway");
 
 #ifdef Q_OS_WINDOWS
     QQuickStyle::setStyle("Universal");

@@ -16,13 +16,16 @@ RowLayout
     property alias speedSlider: speedSlider
     property alias speedSpinBox: speedSpinBox
 
-    property int speedMin: 1
-    property int speedMax: 100
-    property int speedDefault: 20
+    readonly property int speedMin: 1
+    readonly property int speedMax: 100
+    readonly property int speedDefault: 20
+
+    readonly property int toolTipDelay: 500
 
     Frame
     {
         id: controlFrameLeft
+        hoverEnabled: true
         Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
 
         background: Rectangle
@@ -38,13 +41,14 @@ RowLayout
         {
             id: controlBoxLeft
 
-            RoundButton
+            Button
             {
                 id: newButton
-                text: "🌍"
+                text: qsTr("New")
 
                 ToolTip.text: qsTr("Create a new world")
                 ToolTip.visible: hovered
+                ToolTip.delay: toolTipDelay
             }
 
             Shortcut
@@ -53,22 +57,24 @@ RowLayout
                 onActivated: newButton.clicked()
             }
 
-            RoundButton
+            Button
             {
                 id: randomButton
-                text: "🔀"
+                text: qsTr("Random")
 
                 ToolTip.text: qsTr("Generate random cells")
                 ToolTip.visible: hovered
+                ToolTip.delay: toolTipDelay
             }
 
-            RoundButton
+            Button
             {
                 id: loadButton
-                text: "📂"
+                text: qsTr("Load")
 
                 ToolTip.text: qsTr("Load world from file")
                 ToolTip.visible: hovered
+                ToolTip.delay: toolTipDelay
             }
 
             Shortcut
@@ -77,13 +83,14 @@ RowLayout
                 onActivated: loadButton.clicked()
             }
 
-            RoundButton
+            Button
             {
                 id: saveButton
-                text: "💾"
+                text: qsTr("Save")
 
                 ToolTip.text: qsTr("Save world to file")
                 ToolTip.visible: hovered
+                ToolTip.delay: toolTipDelay
             }
 
             Shortcut
@@ -92,26 +99,28 @@ RowLayout
                 onActivated: saveButton.clicked()
             }
 
-            RoundButton
+            Button
             {
                 id: runButton
 
-                property string startSymbol: "▶"
-                property string stopSymbol: "⏸"
+                property string startText: qsTr("Start")
+                property string stopText: qsTr("Stop")
 
-                text: startSymbol
+                text: startText
 
                 ToolTip.text: qsTr("Start or stop the simulation")
                 ToolTip.visible: hovered
+                ToolTip.delay: toolTipDelay
             }
 
-            RoundButton
+            Button
             {
                 id: nextButton
-                text: "⏩"
+                text: qsTr("Next")
 
                 ToolTip.text: qsTr("Calculate and display the next generation")
                 ToolTip.visible: hovered
+                ToolTip.delay: toolTipDelay
             }
 
             RoundButton
@@ -121,6 +130,7 @@ RowLayout
 
                 ToolTip.text: qsTr("Show information about this app")
                 ToolTip.visible: hovered
+                ToolTip.delay: toolTipDelay
             }
         }
     }
@@ -128,6 +138,7 @@ RowLayout
     Frame
     {
         id: controlFrameRight
+        hoverEnabled: true
         Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 
         background: Rectangle
@@ -170,6 +181,7 @@ RowLayout
 
                 ToolTip.text: qsTr("Speed in generations per second")
                 ToolTip.visible: hovered
+                ToolTip.delay: toolTipDelay
             }
 
             Slider

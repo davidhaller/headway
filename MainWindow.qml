@@ -10,9 +10,8 @@ ApplicationWindow
 {
     id: window
     visible: true
-    minimumWidth: 1000
-    minimumHeight: 850
-    title: qsTr("Headway")
+    minimumWidth: 1444
+    minimumHeight: 1333
 
     World
     {
@@ -56,7 +55,7 @@ ApplicationWindow
         onAccepted:
         {
             biotope.createWorld(worldWidth, worldHeight, 0);
-            cellCanvas.redraw(biotope);
+            redrawTimer.start();
         }
     }
 
@@ -158,7 +157,7 @@ ApplicationWindow
                 simulationTimer.start();
                 refreshTimer.start();
 
-                runButton.text = runButton.stopSymbol;
+                runButton.text = runButton.stopText;
             }
 
             else
@@ -175,7 +174,7 @@ ApplicationWindow
                 nextButton.enabled = true;
                 mouseArea.enabled = true;
 
-                runButton.text = runButton.startSymbol;
+                runButton.text = runButton.startText;
             }
         }
 
@@ -244,15 +243,18 @@ ApplicationWindow
 
     Timer
     {
-        id: resizeTimer
+        id: redrawTimer
         repeat: false
-        interval: 150
+        interval: 50
 
-        onTriggered: cellCanvas.redraw(biotope)
+        onTriggered:
+        {
+            cellCanvas.redraw(biotope);
+            setTitle(biotope.width + "x" + biotope.height);
+        }
     }
 
-    onWidthChanged: resizeTimer.start()
-    onHeightChanged: resizeTimer.start()
-
-    Component.onCompleted: cellCanvas.redraw(biotope)
+    onWidthChanged: redrawTimer.start()
+    onHeightChanged: redrawTimer.start()
+    Component.onCompleted: redrawTimer.start()
 }
