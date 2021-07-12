@@ -11,8 +11,6 @@ int main(int argc, char** argv)
 
 #ifdef Q_OS_WINDOWS
     QQuickStyle::setStyle("Universal");
-#else
-    QQuickStyle::setStyle("Basic");
 #endif
 
     QQmlApplicationEngine engine;
