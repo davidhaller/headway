@@ -1,6 +1,7 @@
-import QtQuick 2.9
-import QtQuick.Controls 2.2
+import QtQuick 2.12
+import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
+import QtQuick.Window 2.3
 
 import Qt.labs.platform 1.1
 
@@ -10,8 +11,9 @@ ApplicationWindow
 {
     id: window
     visible: true
-    minimumWidth: 1100
-    minimumHeight: 880
+
+    minimumWidth: Screen.width / 1.8
+    minimumHeight: Screen.height / 1.4
 
     World
     {
