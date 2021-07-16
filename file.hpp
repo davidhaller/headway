@@ -20,4 +20,28 @@ namespace Headway
         virtual bool hasNext() const noexcept = 0; /*!< Checks if end of file was reached */
         virtual void rewind() noexcept = 0; /*!< Sets iterator position to beginning of file. */
     };
+
+    /*!
+     * \brief Exception class thrown if reading or writing fails.
+     */
+
+    class FileException : public QException
+    {
+    public:
+        /*!
+         * \brief Creates a new FileException.
+         *
+         * \param message A human-readable description of the error which can be shown to the user.
+         */
+
+        explicit FileException(const QString& message): message_(message) {}
+
+        void raise() const override { throw *this; }
+        FileException* clone() const override { return new FileException(*this); }
+
+        QString error() const noexcept { return message_; }
+
+    private:
+        const QString message_;
+    };
 }

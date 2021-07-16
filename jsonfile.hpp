@@ -19,7 +19,7 @@ namespace Headway
         /*! \brief Reads data from json file.
          *
          * \param filePath Location of json file.
-         * \throw runtime_error if file cannot be loaded.
+         * \throw FileException if file cannot be loaded.
          */
 
         explicit JsonFile(const QString& filePath);
@@ -37,7 +37,7 @@ namespace Headway
          * \param filePath Location of json file.
          * \param biotope World object to save.
          *
-         * \throw runtime_error if file cannot be saved.
+         * \throw FileException if file cannot be saved.
          */
 
         static void write(const QString& filePath, const Headway::World& biotope);
@@ -49,6 +49,6 @@ namespace Headway
 
         QJsonDocument document;
         QJsonArray cells;
-        QJsonArray::const_iterator iterator;
+        QJsonArray::iterator iterator;
     };
 }

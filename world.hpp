@@ -148,7 +148,7 @@ namespace Headway
 
     private:
         quint64 generations_ = 0;
-        std::atomic<quint64> count_ = ATOMIC_VAR_INIT(0);
+        QAtomicInteger<quint64> count_ = 0;
 
         Headway::Matrix<bool>* matrix = nullptr;
     };

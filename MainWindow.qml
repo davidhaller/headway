@@ -10,8 +10,8 @@ ApplicationWindow
 {
     id: window
     visible: true
-    minimumWidth: 1444
-    minimumHeight: 1333
+    minimumWidth: 1100
+    minimumHeight: 880
 
     World
     {

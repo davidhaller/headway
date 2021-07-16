@@ -1,12 +1,3 @@
-#include <stdexcept>
-
-using std::runtime_error;
-
-#include <random>
-
-using std::default_random_engine;
-using std::uniform_int_distribution;
-
 #include "jsonfile.hpp"
 #include "xmlfile.hpp"
 #include "world.hpp"
@@ -95,14 +86,14 @@ bool World::loadFile(const QUrl& fileUrl) noexcept
         }
     }
 
-    catch (runtime_error& e)
+    catch (FileException& e)
     {
         if (filePath != backupPath) // if reading backup fails, do not read backup again
             loadFile(backupUrl);
 
         backupFile.close();
 
-        emit error(QStringLiteral("File is invalid: ") + e.what());
+        emit error(QStringLiteral("File is invalid: ") + e.error());
         return false;
     }
 
@@ -196,13 +187,14 @@ bool World::random(quint64 number) noexcept
         return false;
     }
 
-    default_random_engine random;
-    uniform_int_distribution<quint32> x(0, width() - 1);
-    uniform_int_distribution<quint32> y(0, height() - 1);
+    QRandomGenerator* chaos = QRandomGenerator::global();
 
     while (number > 0)
     {
-        if (createCell(x(random), y(random))) // if cell did not exist
+        quint32 x = chaos->bounded(width());
+        quint32 y = chaos->bounded(height());
+
+        if (createCell(x, y)) // if cell did not exist
             --number;
     }
 
