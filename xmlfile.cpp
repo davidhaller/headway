@@ -37,7 +37,6 @@ XmlFile::XmlFile(const QString& filePath)
     if (!ok) throw FileException("Generations attribute invalid.");
 
     cells = root.elementsByTagName("cell");
-    index = 0;
 }
 
 void XmlFile::readCoordinate(quint32& x, quint32& y)

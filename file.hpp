@@ -34,14 +34,17 @@ namespace Headway
          * \param message A human-readable description of the error which can be shown to the user.
          */
 
-        explicit FileException(const QString& message): message_(message) {}
+        explicit FileException(const QString& message): message_(message), buffer_(message.toLocal8Bit()) {}
 
         void raise() const override { throw *this; }
         FileException* clone() const override { return new FileException(*this); }
 
         QString error() const noexcept { return message_; }
 
+        const char* what() const noexcept override { return buffer_.data();}
+
     private:
         const QString message_;
+        const QByteArray buffer_;
     };
 }

@@ -103,8 +103,8 @@ RowLayout
             {
                 id: runButton
 
-                property string startText: qsTr("Start")
-                property string stopText: qsTr("Stop")
+                readonly property string startText: qsTr("Start")
+                readonly property string stopText: qsTr("Stop")
 
                 text: startText
 

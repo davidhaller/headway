@@ -103,21 +103,30 @@ bool World::loadFile(const QUrl& fileUrl) noexcept
 
 bool World::saveFile(const QUrl& fileUrl) noexcept
 {
-    QString filePath = fileUrl.toLocalFile();
+    const QString filePath = fileUrl.toLocalFile();
 
-    if (filePath.endsWith(QStringLiteral(".xml"), Qt::CaseInsensitive))
+    try
     {
-        XmlFile::write(filePath, *this);
+        if (filePath.endsWith(QStringLiteral(".xml"), Qt::CaseInsensitive))
+        {
+            XmlFile::write(filePath, *this);
+        }
+
+        else if (filePath.endsWith(QStringLiteral(".json"), Qt::CaseInsensitive))
+        {
+            JsonFile::write(filePath, *this);
+        }
+
+        else
+        {
+            emit error("Unknown file type.");
+            return false;
+        }
     }
 
-    else if (filePath.endsWith(QStringLiteral(".json"), Qt::CaseInsensitive))
+    catch (FileException& e)
     {
-        JsonFile::write(filePath, *this);
-    }
-
-    else
-    {
-        emit error("Unknown file type.");
+        emit error(e.error());
         return false;
     }
 
