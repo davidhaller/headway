@@ -123,10 +123,10 @@ RowLayout
                 ToolTip.delay: toolTipDelay
             }
 
-            RoundButton
+            Button
             {
                 id: aboutButton
-                text: "？"
+                text: qsTr("Help")
 
                 ToolTip.text: qsTr("Show information about this app")
                 ToolTip.visible: hovered

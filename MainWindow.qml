@@ -12,8 +12,8 @@ ApplicationWindow
     id: window
     visible: true
 
-    minimumWidth: Screen.width / 1.8
-    minimumHeight: Screen.height / 1.4
+    minimumWidth: Screen.width / 1.5
+    minimumHeight: Screen.height / 1.3
 
     World
     {
