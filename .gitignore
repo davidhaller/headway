@@ -1,3 +1,5 @@
 build/*
 doc/*
-*.pro.user
+
+*.pro.user*
+*.DS_Store*
