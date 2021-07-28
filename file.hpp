@@ -9,8 +9,6 @@ namespace Headway
 
     class File : public QObject
     {
-        Q_OBJECT
-
     public:
         virtual quint32 readWidth() const = 0; /*!< Reads the width from file. */
         virtual quint32 readHeight() const = 0; /*!< Reads the height from file. */

@@ -13,8 +13,6 @@ namespace Headway
 
     class XmlFile : public File
     {
-        Q_OBJECT
-
     public:
 
         /*! \brief Reads data from xml file.

@@ -12,8 +12,6 @@ namespace Headway
 
     class JsonFile : public File
     {
-        Q_OBJECT
-
     public:
 
         /*! \brief Reads data from json file.
