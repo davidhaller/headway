@@ -1,5 +1,5 @@
 QT += core xml qml quick quickcontrols2 widgets
-CONFIG += c++14
+CONFIG += c++14 lrelease embed_translations
 
 SOURCES += \
     xmlfile.cpp \
@@ -12,6 +12,8 @@ HEADERS += \
     xmlfile.hpp \
     jsonfile.hpp \
     world.hpp
+
+TRANSLATIONS = i18n/de.ts
 
 testconfig {
     QT += testlib

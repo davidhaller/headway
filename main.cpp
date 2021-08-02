@@ -1,6 +1,8 @@
 #include <QApplication>
-#include <QQmlApplicationEngine>
+#include <QLocale>
+#include <QTranslator>
 #include <QQuickStyle>
+#include <QQmlApplicationEngine>
 
 #include "world.hpp"
 
@@ -8,6 +10,15 @@ int main(int argc, char** argv)
 {
     QApplication app(argc, argv);
     app.setApplicationName("Headway");
+
+    const QLocale locale = QLocale::system();
+    const QLocale::Language language = locale.language();
+    const QString languageCode = locale.languageToCode(language);
+
+    QTranslator translator;
+    if (!translator.load(languageCode, ":/i18n") && languageCode != "C" && languageCode != "en")
+        qWarning() << "No translation available for " + locale.languageToString(language) + ", using English as fallback language.";
+    else app.installTranslator(&translator);
 
 #ifdef Q_OS_WINDOWS
     QQuickStyle::setStyle("Universal");
