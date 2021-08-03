@@ -25,7 +25,7 @@ testconfig {
 
     HEADERS += tests/world_test.hpp
 } else {
-    TARGET = headway
+    TARGET = Headway
 
     SOURCES += main.cpp
     RESOURCES += qml.qrc

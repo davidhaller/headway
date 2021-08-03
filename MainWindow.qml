@@ -3,7 +3,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.3
 
-import Qt.labs.platform 1.1
+import Qt.labs.platform 1.1 as Labs
 
 import Headway 4.1;
 
@@ -15,6 +15,19 @@ ApplicationWindow
     minimumWidth: Screen.width / 1.5
     minimumHeight: Screen.height / 1.3
 
+    Labs.MenuBar
+    {
+        Labs.Menu
+        {
+            id: appMenu
+            Labs.MenuItem
+            {
+                role: Labs.MenuItem.AboutRole
+                onTriggered: aboutDialog.open()
+            }
+        }
+    }
+
     World
     {
         id: biotope
@@ -25,11 +38,11 @@ ApplicationWindow
         }
     }
 
-    MessageDialog
+    Labs.MessageDialog
     {
         id: errorDialog
         title: qsTr("Error")
-        buttons: MessageDialog.Close
+        buttons: Labs.MessageDialog.Close
     }
 
     AboutDialog
@@ -80,11 +93,11 @@ ApplicationWindow
         }
     }
 
-    FileDialog
+    Labs.FileDialog
     {
         id: openDialog
-        fileMode: FileDialog.OpenFile
-        options: FileDialog.ReadOnly
+        fileMode: Labs.FileDialog.OpenFile
+        options: Labs.FileDialog.ReadOnly
         nameFilters: [qsTr("All files (*)"), qsTr("XML files (*.xml)"), qsTr("JSON files (*.json)")]
         onAccepted:
         {
@@ -93,10 +106,10 @@ ApplicationWindow
         }
     }
 
-    FileDialog
+    Labs.FileDialog
     {
         id: saveDialog
-        fileMode: FileDialog.SaveFile
+        fileMode: Labs.FileDialog.SaveFile
         nameFilters: openDialog.nameFilters
         onAccepted: biotope.saveFile(saveDialog.file)
     }
