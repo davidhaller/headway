@@ -3,6 +3,7 @@
 #include <QTranslator>
 #include <QQuickStyle>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 
 #include "world.hpp"
 
@@ -25,11 +26,17 @@ int main(int argc, char** argv)
 #endif
 
     QQmlApplicationEngine engine;
+
+#ifdef Q_OS_MACOS
+    engine.rootContext()->setContextProperty("MENUBAR_SUPPORT", QVariant(true));
+#else
+    engine.rootContext()->setContextProperty("MENUBAR_SUPPORT", QVariant(false));
+#endif
+
     qmlRegisterType<Headway::World>("Headway", 4, 1, "World");
     engine.load(QUrl(QStringLiteral("qrc:/MainWindow.qml")));
 
     if (engine.rootObjects().isEmpty())
-        return -1;
-
-    return app.exec();
+        return EXIT_FAILURE;
+    else return app.exec();
 }

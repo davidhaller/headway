@@ -17,6 +17,8 @@ ApplicationWindow
 
     Labs.MenuBar
     {
+        id: globalMenuBar
+
         Labs.Menu
         {
             id: appMenu
@@ -271,5 +273,9 @@ ApplicationWindow
 
     onWidthChanged: redrawTimer.start()
     onHeightChanged: redrawTimer.start()
-    Component.onCompleted: redrawTimer.start()
+    Component.onCompleted:
+    {
+        if (!MENUBAR_SUPPORT) globalMenuBar.window = null;
+        redrawTimer.start();
+    }
 }
