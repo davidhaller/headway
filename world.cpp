@@ -46,10 +46,6 @@ bool World::createWorld(quint32 width, quint32 height, quint64 generations) noex
 
 bool World::loadFile(const QUrl& fileUrl) noexcept
 {
-    QTemporaryFile backupFile(QDir::temp().filePath("XXXXXX.xml")); backupFile.open();
-    const QString backupPath = backupFile.fileName();
-    const QUrl backupUrl = QUrl::fromLocalFile(backupPath);
-
     QSharedPointer<File> file;
     const QString filePath = fileUrl.toLocalFile();
 
@@ -71,9 +67,6 @@ bool World::loadFile(const QUrl& fileUrl) noexcept
             return false;
         }
 
-        if (filePath != backupPath) // if reading backup, do not overwrite it
-            saveFile(backupUrl);
-
         if (!createWorld(file->readWidth(), file->readHeight(), file->readGenerations()))
             return false;
 
@@ -88,16 +81,10 @@ bool World::loadFile(const QUrl& fileUrl) noexcept
 
     catch (FileException& e)
     {
-        if (filePath != backupPath) // if reading backup fails, do not read backup again
-            loadFile(backupUrl);
-
-        backupFile.close();
-
         emit error(QStringLiteral("File is invalid: ") + e.error());
         return false;
     }
 
-    backupFile.close();
     return true;
 }
 
