@@ -1,10 +1,9 @@
 #include "world.hpp"
-#include "tests/world_test.hpp"
+#include "test.hpp"
 
-using Headway::World;
-using Headway::TestWorld;
+using namespace Headway;
 
-void TestWorld::testRandomTooHigh()
+void Test::randomTooHigh()
 {
     World biotope;
     biotope.createWorld(2, 2);
@@ -13,7 +12,7 @@ void TestWorld::testRandomTooHigh()
     QVERIFY(!success);
 }
 
-void TestWorld::testCellWriteInvalid()
+void Test::cellWriteInvalid()
 {
     World biotope;
     biotope.createWorld(10, 11);
@@ -22,7 +21,7 @@ void TestWorld::testCellWriteInvalid()
     QVERIFY(!biotope.createCell(10, 10));
 }
 
-void TestWorld::testCellWriteTwice()
+void Test::cellWriteTwice()
 {
     World biotope;
     biotope.createWorld(10, 15);
@@ -31,7 +30,7 @@ void TestWorld::testCellWriteTwice()
     QVERIFY(!biotope.createCell(1, 2));
 }
 
-void TestWorld::testNextEq()
+void Test::nextEq()
 {
     World w1;
     w1.createWorld(40, 30, 2);
@@ -47,7 +46,7 @@ void TestWorld::testNextEq()
     QVERIFY(w1 == w2);
 }
 
-void TestWorld::testSaveLoadEq()
+void Test::saveLoadEq()
 {
     World genesis;
     genesis.createWorld(8, 20, 4);
@@ -74,3 +73,5 @@ void TestWorld::testSaveLoadEq()
     xmlFile.close();
     jsonFile.close();
 }
+
+QTEST_MAIN(Headway::Test)
