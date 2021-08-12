@@ -177,7 +177,7 @@ quint8 World::neighbors(quint32 x, quint32 y) const noexcept
 
 bool World::random(quint64 number) noexcept
 {
-    if (number > matrix->size() - count_)
+    if (number > matrix->size() - count())
     {
         emit error("Number of cells exceeds available space.");
         return false;
@@ -187,8 +187,8 @@ bool World::random(quint64 number) noexcept
 
     while (number > 0)
     {
-        quint32 x = chaos->bounded(width());
-        quint32 y = chaos->bounded(height());
+        const quint32 x = chaos->bounded(width());
+        const quint32 y = chaos->bounded(height());
 
         if (createCell(x, y)) // if cell did not exist
             --number;
@@ -205,7 +205,7 @@ void World::next() noexcept
     {
         for (quint32 x = 0; x < width(); ++x)
         {
-            quint8 n = neighbors(x, y);
+            const quint8 n = neighbors(x, y);
             cache.set(x, y, n);
         }
     }
@@ -216,7 +216,7 @@ void World::next() noexcept
     {
         for (quint32 x = 0; x < width(); ++x)
         {
-            quint8 n = cache.get(x, y);
+            const quint8 n = cache.get(x, y);
 
             if (n <= 1 || n >= 4) killCell(x, y);
             else if (n == 3) createCell(x, y);
