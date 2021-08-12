@@ -7,9 +7,10 @@ void Test::randomTooHigh()
 {
     World biotope;
     biotope.createWorld(2, 2);
+    QSignalSpy spy(&biotope, &World::error);
 
-    bool success = biotope.random(50000);
-    QVERIFY(!success);
+    QVERIFY(!biotope.random(50000));
+    QCOMPARE(spy.count(), 1);
 }
 
 void Test::cellWriteInvalid()
@@ -67,11 +68,39 @@ void Test::saveLoadEq()
     World jsonWorld;
     QVERIFY(jsonWorld.loadFile(jsonUrl));
 
-    QVERIFY(genesis == xmlWorld);
-    QVERIFY(genesis == jsonWorld);
+    QCOMPARE(xmlWorld, genesis);
+    QCOMPARE(jsonWorld, genesis);
 
     xmlFile.close();
     jsonFile.close();
+}
+
+void Test::loadInvalid()
+{
+    QTemporaryFile invalidFile(QDir::temp().filePath("XXXXXX.xml"));
+    invalidFile.open();
+
+    QTextStream stream(&invalidFile);
+    stream << "Lorem ipsum";
+    stream.flush();
+
+    const QUrl fileUrl = QUrl::fromLocalFile(invalidFile.fileName());
+    World invalidWorld;
+    QSignalSpy spy(&invalidWorld, &World::error);
+
+    QVERIFY(!invalidWorld.loadFile(fileUrl));
+    QCOMPARE(spy.count(), 1);
+
+    invalidFile.close();
+}
+
+void Test::createInvalid()
+{
+    World biotope;
+    QSignalSpy spy(&biotope, &World::error);
+
+    QVERIFY(!biotope.createWorld(0, 2));
+    QCOMPARE(spy.count(), 1);
 }
 
 QTEST_MAIN(Headway::Test)

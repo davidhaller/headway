@@ -14,5 +14,7 @@ namespace Headway
         void cellWriteTwice();
         void nextEq();
         void saveLoadEq();
+        void loadInvalid();
+        void createInvalid();
     };
 }
