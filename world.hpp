@@ -13,8 +13,8 @@ namespace Headway
     class World : public QObject
     {
         Q_OBJECT
-        Q_PROPERTY(quint32 width READ width)
-        Q_PROPERTY(quint32 height READ height)
+        Q_PROPERTY(quint32 width READ width CONSTANT)
+        Q_PROPERTY(quint32 height READ height CONSTANT)
         Q_PROPERTY(quint64 generations READ generations NOTIFY generationsChanged)
         Q_PROPERTY(quint64 count READ count NOTIFY countChanged)
 
