@@ -202,6 +202,7 @@ ApplicationWindow
         }
 
         aboutButton.onClicked: aboutDialog.open()
+        aboutButton.visible: !MENUBAR_SUPPORT
 
         cellLabel.text: biotope.count + (biotope.count === 1 ? qsTr(" cell") : qsTr(" cells"))
         generationsLabel.text: biotope.generations + (biotope.generations === 1 ? qsTr(" generation") : qsTr(" generations"))
