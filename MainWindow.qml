@@ -1,9 +1,9 @@
-import QtQuick 2.12
-import QtQuick.Controls 2.5
-import QtQuick.Layouts 1.3
-import QtQuick.Window 2.3
+import QtQuick 6.0
+import QtQuick.Controls 6.0
+import QtQuick.Layouts 6.0
+import QtQuick.Window 6.0
 
-import Qt.labs.platform 1.1 as Labs
+import Qt.labs.platform 1.0 as Labs
 
 import Headway 4.1;
 
@@ -202,7 +202,7 @@ ApplicationWindow
         }
 
         aboutButton.onClicked: aboutDialog.open()
-        aboutButton.visible: !MENUBAR_SUPPORT
+        aboutButton.visible: !HEADWAY_GLOBAL_MENUBAR
 
         cellLabel.text: biotope.count + (biotope.count === 1 ? qsTr(" cell") : qsTr(" cells"))
         generationsLabel.text: biotope.generations + (biotope.generations === 1 ? qsTr(" generation") : qsTr(" generations"))
@@ -276,7 +276,7 @@ ApplicationWindow
     onHeightChanged: redrawTimer.start()
     Component.onCompleted:
     {
-        if (!MENUBAR_SUPPORT) globalMenuBar.window = null;
+        if (!HEADWAY_GLOBAL_MENUBAR) globalMenuBar.window = null;
         redrawTimer.start();
     }
 }

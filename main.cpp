@@ -28,9 +28,9 @@ int main(int argc, char** argv)
     QQmlApplicationEngine engine;
 
 #ifdef Q_OS_MACOS
-    engine.rootContext()->setContextProperty("MENUBAR_SUPPORT", QVariant(true));
+    engine.rootContext()->setContextProperty("HEADWAY_GLOBAL_MENUBAR", QVariant(true));
 #else
-    engine.rootContext()->setContextProperty("MENUBAR_SUPPORT", QVariant(false));
+    engine.rootContext()->setContextProperty("HEADWAY_GLOBAL_MENUBAR", QVariant(false));
 #endif
 
     qmlRegisterType<Headway::World>("Headway", 4, 1, "World");
