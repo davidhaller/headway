@@ -65,7 +65,7 @@ namespace Headway
          * with width x height as its size. This function is used
          * to transform the two coordinates into an array index.
          *
-         * \returns An array index that can be directly used with data.
+         * \return An array index that can be directly used with the data vector.
          */
 
         quint64 offset(quint32 x, quint32 y) const noexcept
