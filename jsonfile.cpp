@@ -21,17 +21,17 @@ JsonFile::JsonFile(const QString& filePath)
     if (!document.isObject())
         throw FileException("Document is malformed.");
 
-    QJsonObject object = document.object();
+    const QJsonObject object = document.object();
 
     if (!object.contains("world"))
         throw FileException("Missing world element.");
 
-    QJsonValue rootValue = object.value("world");
+    const QJsonValue rootValue = object.value("world");
 
     if (!rootValue.isObject())
         throw FileException("World element is malformed.");
 
-    QJsonObject root = rootValue.toObject();
+    const QJsonObject root = rootValue.toObject();
 
     if (!root.contains("width"))
         throw FileException("Width attribute missing.");
@@ -55,7 +55,7 @@ JsonFile::JsonFile(const QString& filePath)
         if (!ok) throw FileException("Generations attribute invalid.");
     }
 
-    QJsonValue array = root.value("cells");
+    const QJsonValue array = root.value("cells");
 
     if (!array.isArray())
         throw FileException("Cells array missing.");
@@ -66,13 +66,13 @@ JsonFile::JsonFile(const QString& filePath)
 
 void JsonFile::readCoordinate(quint32& x, quint32& y)
 {
-    QJsonValue value = *iterator;
+    const QJsonValue value = *iterator;
     ++iterator;
 
     if (!value.isObject())
         throw FileException("Cell value is not an object.");
 
-    QJsonObject cell = value.toObject();
+    const QJsonObject cell = value.toObject();
 
     if (!cell.contains("x"))
         throw FileException("Missing x coordinate.");
@@ -138,7 +138,7 @@ void JsonFile::write(const QString& filePath, const Headway::World& biotope)
         throw FileException(QStringLiteral("Failed to open file: ") + fileHandle.errorString());
     }
 
-    QString text = QString::fromUtf8(document.toJson(QJsonDocument::Indented));
+    const QString text = QString::fromUtf8(document.toJson(QJsonDocument::Indented));
     QTextStream stream(&fileHandle);
     stream << text;
 }

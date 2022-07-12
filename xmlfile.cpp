@@ -14,7 +14,7 @@ XmlFile::XmlFile(const QString& filePath)
     if (!document.setContent(&fileHandle, &error))
         throw FileException(QStringLiteral("Failed to parse file.\n\n") + error);
 
-    QDomElement root = document.documentElement();
+    const QDomElement root = document.documentElement();
 
     if (root.tagName() != "world")
         throw FileException("Unknown root element.");
@@ -41,13 +41,13 @@ XmlFile::XmlFile(const QString& filePath)
 
 void XmlFile::readCoordinate(quint32& x, quint32& y)
 {
-    QDomNode node = cells.item(index);
+    const QDomNode node = cells.item(index);
     ++index;
 
     if (node.isNull())
         throw FileException("No more coordinates to read.");
 
-    QDomElement elem = node.toElement();
+    const QDomElement elem = node.toElement();
 
     if (elem.isNull())
         throw FileException("Cell node is not an element type.");
