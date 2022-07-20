@@ -21,7 +21,7 @@ testconfig {
     CONFIG += console testcase
     CONFIG -= app_bundle
 
-    TARGET = headway-test
+    TARGET = run-test
 
     SOURCES += test.cpp
     HEADERS += test.hpp

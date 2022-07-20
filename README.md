@@ -28,7 +28,7 @@ $ mkdir build
 $ cd build
 $ qmake ../headway.pro
 $ make
-$ ./headway
+$ ./Headway
 ```
 
 You may need to install the latest Qt SDK first (6.0 or later). Other dependencies are not required. Headway should run on any desktop operating system supported by Qt (Linux, Windows, macOS).
@@ -40,7 +40,7 @@ To execute the unit tests, you need to pass additional arguments to `qmake`:
 ```bash
 $ qmake "CONFIG += testconfig" ../headway.pro
 $ make
-$ ./headway-test
+$ ./run-test
 ```
 
 ## Examples
