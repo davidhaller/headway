@@ -22,11 +22,11 @@ Item
         const boxWidth = canvas.width / columns;
         const boxHeight = canvas.height / rows;
 
-        for (var y = 0; y < rows; y++)
+        for (let y = 0; y < rows; y++)
         {
-            for (var x = 0; x < columns; x++)
+            for (let x = 0; x < columns; x++)
             {
-                var cell = Cell.createObject(canvas);
+                let cell = Cell.createObject(canvas);
 
                 cell.move(boxWidth * x, boxHeight * y);
                 cell.resize(boxWidth, boxHeight);
@@ -42,9 +42,9 @@ Item
     {
         canvas.visible = false;
 
-        for (var y = 0; y < rows; y++)
+        for (let y = 0; y < rows; y++)
         {
-            for (var x = 0; x < columns; x++)
+            for (let x = 0; x < columns; x++)
             {
                 refreshCell(biotope, x, y);
             }
@@ -55,7 +55,7 @@ Item
 
     function refreshCell(biotope, x, y)
     {
-        var cell = cellArray[offset(x, y)];
+        let cell = cellArray[offset(x, y)];
         cell.setAlive(biotope.isAlive(x, y));
     }
 
