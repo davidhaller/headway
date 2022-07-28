@@ -9,13 +9,14 @@ SOURCES += \
     world.cpp \
 
 HEADERS += \
+    config.hpp \
     file.hpp \
     matrix.hpp \
     xmlfile.hpp \
     jsonfile.hpp \
     world.hpp
 
-testconfig {
+test {
     QT += testlib
 
     CONFIG += console testcase

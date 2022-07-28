@@ -1,11 +1,11 @@
-import QtQuick 6.0
-import QtQuick.Controls 6.0
-import QtQuick.Layouts 6.0
-import QtQuick.Window 6.0
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Window
 
-import Qt.labs.platform 1.0 as Labs
+import Qt.labs.platform as Labs
 
-import Headway 4.1;
+import Headway;
 
 ApplicationWindow
 {

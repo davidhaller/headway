@@ -1,5 +1,5 @@
-import QtQuick 6.0
-import QtQuick.Controls 6.0
+import QtQuick
+import QtQuick.Controls
 
 Dialog
 {
@@ -22,7 +22,7 @@ Dialog
             textFormat: TextEdit.RichText
 
             font.pointSize: 12
-            text: "<h1>Headway 4.1</h1>"
+            text: "<h1>Headway "+ HEADWAY_VERSION_MAJOR + "." + HEADWAY_VERSION_MINOR + "</h1>"
                   + "<p>Copyright © 2022 David Haller (<a href=\"mailto:davidhaller@mailbox.org\">davidhaller@mailbox.org</a>)</p>"
                   + "<p>Licensed under the terms and conditions of the<br/>Apache License, Version 2.0.</p>"
                   + "<p><a href=\"https://davidhaller.github.io/headway\">https://davidhaller.github.io/headway</a></p>"

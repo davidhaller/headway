@@ -38,7 +38,7 @@ You may need to install the latest Qt SDK first (6.0 or later). Other dependenci
 To execute the unit tests, you need to pass additional arguments to `qmake`:
 
 ```bash
-$ qmake "CONFIG += testconfig" ../headway.pro
+$ qmake "CONFIG += test" ../headway.pro
 $ make
 $ ./run-test
 ```
