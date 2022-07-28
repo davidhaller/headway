@@ -1,9 +1,8 @@
 #pragma once
 
-#include <QtCore>
-
 namespace Headway
 {
+    constexpr auto VERSION = "4.1";
     constexpr int VERSION_MAJOR = 4;
     constexpr int VERSION_MINOR = 1;
 
