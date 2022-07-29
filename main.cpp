@@ -16,7 +16,7 @@ static void configure(QApplication* application, QTranslator* translator, QQmlCo
     const QString languageCode = QLocale::languageToCode(language);
 
     if (!translator->load(languageCode, ":/i18n") && languageCode != "C" && languageCode != "en")
-        qWarning() << "No translation available for " + locale.languageToString(language) + ", using English as fallback language.";
+        qWarning() << "No translation available for " + QLocale::languageToString(language) + ", using English as fallback language.";
     else application->installTranslator(translator);
 
     context->setContextProperty("HEADWAY_VERSION", QVariant(Headway::VERSION));
