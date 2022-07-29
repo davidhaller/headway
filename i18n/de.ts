@@ -80,7 +80,7 @@
     </message>
     <message>
         <source>Speed in generations per second</source>
-        <translation>Geschwindigkeit in generationen pro Sekunde</translation>
+        <translation>Geschwindigkeit in Generationen pro Sekunde</translation>
     </message>
 </context>
 <context>
