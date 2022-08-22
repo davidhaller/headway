@@ -2,7 +2,6 @@
 
 #include <QtCore>
 
-#include "file.hpp"
 #include "matrix.hpp"
 
 namespace Headway

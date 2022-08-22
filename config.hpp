@@ -1,8 +1,10 @@
 #pragma once
 
+#include <QtGlobal>
+
 namespace Headway
 {
-    constexpr auto VERSION = "4.1";
+    constexpr char VERSION[] = "4.1";
     constexpr int VERSION_MAJOR = 4;
     constexpr int VERSION_MINOR = 1;
 
@@ -12,11 +14,11 @@ namespace Headway
     constexpr bool GLOBAL_MENUBAR = false;
 #endif
 
-#if defined(Q_OS_WINDOWS)
-    constexpr auto QUICK_CONTROLS_STYLE = "Universal";
+#if defined(Q_OS_WIN)
+    constexpr char QUICK_CONTROLS_STYLE[] = "Universal";
 #elif defined(Q_OS_MACOS)
-    constexpr auto QUICK_CONTROLS_STYLE = "macOS";
+    constexpr char QUICK_CONTROLS_STYLE[] = "macOS";
 #else
-    constexpr auto QUICK_CONTROLS_STYLE = "Basic";
+    constexpr char QUICK_CONTROLS_STYLE[] = "Basic";
 #endif
 }
