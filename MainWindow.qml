@@ -12,9 +12,6 @@ ApplicationWindow
     id: window
     visible: true
 
-    minimumWidth: Screen.width / 1.5
-    minimumHeight: Screen.height / 1.3
-
     Labs.MenuBar
     {
         id: globalMenuBar
@@ -147,7 +144,6 @@ ApplicationWindow
         width: parent.width
 
         newButton.onClicked: createWorldDialog.open()
-
         randomButton.onClicked:
         {
             const space = biotope.width * biotope.height - biotope.count;
