@@ -124,7 +124,7 @@ ApplicationWindow
             id: cellCanvas
         }
 
-        onClicked:
+        onClicked: mouse =>
         {
             const x = Math.floor((mouse.x * biotope.width) / (cellCanvas.width));
             const y = Math.floor((mouse.y * biotope.height) / (cellCanvas.height));
