@@ -3,8 +3,6 @@ import QtQuick.Controls
 
 Dialog
 {
-    width: parent.width
-    height: parent.height
     modal: true
     title: qsTr("About Headway")
     standardButtons: Dialog.Close

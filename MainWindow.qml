@@ -11,6 +11,8 @@ ApplicationWindow
 {
     id: window
     visible: true
+    minimumWidth: 1000
+    minimumHeight: 700
 
     Labs.MenuBar
     {
