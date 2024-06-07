@@ -21,7 +21,7 @@ Dialog
 
             font.pointSize: 12
             text: "<h1>Headway "+ HEADWAY_VERSION + "</h1>"
-                  + "<p>Copyright © 2022 David Haller (<a href=\"mailto:davidhaller@mailbox.org\">davidhaller@mailbox.org</a>)</p>"
+                  + "<p>Copyright © 2024 David Haller (<a href=\"mailto:haller_david@icloud.com\">haller_david@icloud.com</a>)</p>"
                   + "<p>Licensed under the terms and conditions of the<br/>Apache License, Version 2.0.</p>"
                   + "<p><a href=\"https://davidhaller.github.io/headway\">https://davidhaller.github.io/headway</a></p>"
                   + "<h2>Description</h2>"
