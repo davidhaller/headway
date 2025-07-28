@@ -34,7 +34,7 @@ int main(int argc, char** argv)
     QQmlApplicationEngine engine;
 
     configure(&application, &translator, engine.rootContext());
-    engine.load(QUrl(QStringLiteral("qrc:/MainWindow.qml")));
+    engine.loadFromModule("io.github.davidhaller.headway", "MainWindow");
 
     if (engine.rootObjects().isEmpty())
         return EXIT_FAILURE;

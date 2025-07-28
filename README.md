@@ -26,21 +26,18 @@ Headway is implemented in C++ and QML. You can compile and run the app using Qt 
 ```bash
 $ mkdir build
 $ cd build
-$ qmake ../headway.pro
+$ cmake ..
 $ make
-$ ./Headway
 ```
 
-You may need to install the latest Qt SDK first (6.0 or later). Other dependencies are not required. Headway should run on any desktop operating system supported by Qt (Linux, Windows, macOS).
+Depending on your platform, a executable file named `Headway.exe` or `Headway.app` (or just `Headway`) will be created. You may need to install the latest Qt SDK first (6.9 or later) and the CMake build system (could be bundled with Qt). Other dependencies are not required. Headway should run on any desktop operating system supported by Qt (macOS, Windows, Linux).
 
 ### Executing unit tests
 
-To execute the unit tests, you need to pass additional arguments to `qmake`:
+To execute the unit tests, you can either run them using Qt Creator, or using the command line with `ctest`:
 
 ```bash
-$ qmake "CONFIG += test" ../headway.pro
-$ make
-$ ./run-test
+$ ctest --verbose
 ```
 
 ## Examples
