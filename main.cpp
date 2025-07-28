@@ -1,16 +1,13 @@
 #include <QApplication>
 #include <QTranslator>
-#include <QQuickStyle>
 #include <QQmlApplicationEngine>
-#include <QQmlContext>
 
-#include "config.hpp"
 #include "world.hpp"
 
-static void configure(QApplication* application, QTranslator* translator, QQmlContext* context)
+static void configure(QApplication* application, QTranslator* translator)
 {
     application->setApplicationName("Headway");
-    application->setApplicationVersion(Headway::VERSION);
+    application->setApplicationVersion(QString::number(HEADWAY_VERSION));
 
     const QLocale locale = QLocale::system();
     const QLocale::Language language = locale.language();
@@ -20,11 +17,7 @@ static void configure(QApplication* application, QTranslator* translator, QQmlCo
         qWarning() << "No translation available for " + QLocale::languageToString(language) + ", using English as fallback language.";
     else application->installTranslator(translator);
 
-    context->setContextProperty("HEADWAY_VERSION", QVariant(Headway::VERSION));
-    context->setContextProperty("HEADWAY_GLOBAL_MENUBAR", QVariant(Headway::GLOBAL_MENUBAR));
-    QQuickStyle::setStyle(Headway::QUICK_CONTROLS_STYLE);
-
-    qmlRegisterType<Headway::World>("Headway", Headway::VERSION_MAJOR, Headway::VERSION_MINOR, "World");
+    qmlRegisterType<Headway::World>("Headway", HEADWAY_VERSION_MAJOR, HEADWAY_VERSION_MINOR, "World");
 }
 
 int main(int argc, char** argv)
@@ -33,7 +26,7 @@ int main(int argc, char** argv)
     QTranslator translator;
     QQmlApplicationEngine engine;
 
-    configure(&application, &translator, engine.rootContext());
+    configure(&application, &translator);
     engine.loadFromModule("io.github.davidhaller.headway", "MainWindow");
 
     if (engine.rootObjects().isEmpty())

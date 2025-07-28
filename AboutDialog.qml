@@ -20,7 +20,7 @@ Dialog
             textFormat: TextEdit.RichText
 
             font.pointSize: 12
-            text: "<h1>Headway "+ HEADWAY_VERSION + "</h1>"
+            text: "<h1>Headway "+ Qt.application.version + "</h1>"
                   + "<p>Copyright © 2025 David Haller (<a href=\"mailto:haller_david@icloud.com\">haller_david@icloud.com</a>)</p>"
                   + "<p>Licensed under the terms and conditions of the<br/>Apache License, Version 2.0.</p>"
                   + "<p><a href=\"https://davidhaller.github.io/headway\">https://davidhaller.github.io/headway</a></p>"

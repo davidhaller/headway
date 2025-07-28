@@ -200,7 +200,7 @@ ApplicationWindow
         }
 
         aboutButton.onClicked: aboutDialog.open()
-        aboutButton.visible: !HEADWAY_GLOBAL_MENUBAR
+        aboutButton.visible: (Qt.platform.os != "osx")
 
         cellLabel.text: biotope.count + (biotope.count === 1 ? qsTr(" cell") : qsTr(" cells"))
         generationsLabel.text: biotope.generations + (biotope.generations === 1 ? qsTr(" generation") : qsTr(" generations"))
@@ -274,7 +274,7 @@ ApplicationWindow
     onHeightChanged: redrawTimer.start()
     Component.onCompleted:
     {
-        if (!HEADWAY_GLOBAL_MENUBAR) globalMenuBar.window = null;
+        if (Qt.platform.os != "osx") globalMenuBar.window = null;
         redrawTimer.start();
     }
 }

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(Headway VERSION 4.1 LANGUAGES CXX)
+project(Headway VERSION 4.2 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -9,7 +9,6 @@ find_package(Qt6 REQUIRED COMPONENTS Core LinguistTools Quick Gui Qml Quick Quic
 qt_standard_project_setup(REQUIRES 6.9)
 
 set(HEADWAY_CXX_FILES
-    config.hpp
     file.hpp
     jsonfile.cpp
     jsonfile.hpp
@@ -59,6 +58,10 @@ target_link_libraries(HeadwayCore PUBLIC
     Qt::Xml
 )
 target_link_libraries(Headway PRIVATE HeadwayCore)
+target_compile_definitions(Headway PRIVATE
+    HEADWAY_VERSION=${PROJECT_VERSION}
+    HEADWAY_VERSION_MAJOR=${PROJECT_VERSION_MAJOR}
+    HEADWAY_VERSION_MINOR=${PROJECT_VERSION_MINOR})
 qt_add_translations(Headway TS_FILES i18n/de.ts)
 
 #include(GNUInstallDirs)
