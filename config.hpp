@@ -1,6 +1,6 @@
 #pragma once
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 namespace Headway
 {

@@ -1,7 +1,8 @@
-#include <QtCore>
-#include <QtQml>
-#include <QtQuickControls2>
-#include <QtWidgets>
+#include <QApplication>
+#include <QTranslator>
+#include <QQuickStyle>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
 
 #include "config.hpp"
 #include "world.hpp"

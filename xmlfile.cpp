@@ -1,3 +1,6 @@
+#include <QFile>
+#include <QTextStream>
+
 #include "xmlfile.hpp"
 
 using namespace Headway;
@@ -9,10 +12,9 @@ XmlFile::XmlFile(const QString& filePath)
     if (!fileHandle.open(QIODevice::ReadOnly | QIODevice::Text))
         throw FileException(QStringLiteral("Failed to open file: ") + fileHandle.errorString());
 
-    QString error;
-
-    if (!document.setContent(&fileHandle, &error))
-        throw FileException(QStringLiteral("Failed to parse file.\n\n") + error);
+    QDomDocument::ParseResult parseResult = document.setContent(&fileHandle);
+    if (!parseResult)
+        throw FileException(QStringLiteral("Failed to parse file.\n\n") + parseResult.errorMessage);
 
     const QDomElement root = document.documentElement();
 

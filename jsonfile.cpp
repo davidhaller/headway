@@ -1,3 +1,6 @@
+#include <QFile>
+#include <QJsonObject>
+
 #include "jsonfile.hpp"
 
 using namespace Headway;

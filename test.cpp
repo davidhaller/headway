@@ -1,3 +1,7 @@
+#include <QTemporaryFile>
+#include <QTest>
+#include <QSignalSpy>
+
 #include "world.hpp"
 #include "test.hpp"
 

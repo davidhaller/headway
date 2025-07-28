@@ -1,6 +1,9 @@
 #pragma once
 
-#include <QtCore>
+#include <QObject>
+#include <QAtomicInteger>
+#include <QString>
+#include <QUrl>
 
 #include "matrix.hpp"
 

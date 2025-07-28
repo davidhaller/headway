@@ -1,7 +1,8 @@
 #pragma once
 
-#include <QtCore>
-#include <QtXml>
+#include <QString>
+#include <QDomDocument>
+#include <QDomNodeList>
 
 #include "file.hpp"
 #include "world.hpp"

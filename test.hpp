@@ -1,6 +1,6 @@
 #pragma once
 
-#include <QtTest>
+#include <QObject>
 
 namespace Headway
 {

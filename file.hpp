@@ -1,6 +1,9 @@
 #pragma once
 
-#include <QtCore>
+#include <QObject>
+#include <QException>
+#include <QString>
+#include <QByteArray>
 
 namespace Headway
 {

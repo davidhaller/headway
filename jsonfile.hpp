@@ -1,6 +1,7 @@
 #pragma once
 
-#include <QtCore>
+#include <QJsonDocument>
+#include <QJsonArray>
 
 #include "file.hpp"
 #include "world.hpp"

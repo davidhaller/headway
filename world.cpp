@@ -1,3 +1,5 @@
+#include <QRandomGenerator>
+
 #include "jsonfile.hpp"
 #include "xmlfile.hpp"
 #include "world.hpp"
