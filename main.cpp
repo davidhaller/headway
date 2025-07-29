@@ -8,7 +8,7 @@ int main(int argc, char** argv)
 {
     QApplication application(argc, argv);
     application.setApplicationName(HEADWAY_NAME);
-    application.setApplicationVersion(QString::number(HEADWAY_VERSION));
+    application.setApplicationVersion(HEADWAY_VERSION);
 
     const QLocale locale = QLocale::system();
     const QLocale::Language language = locale.language();
