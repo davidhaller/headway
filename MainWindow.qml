@@ -200,14 +200,14 @@ ApplicationWindow
         }
 
         aboutButton.onClicked: aboutDialog.open()
-        aboutButton.visible: (Qt.platform.os != "osx")
+        aboutButton.visible: (Qt.platform.os !== "osx")
 
         cellLabel.text: biotope.count + (biotope.count === 1 ? qsTr(" cell") : qsTr(" cells"))
         generationsLabel.text: biotope.generations + (biotope.generations === 1 ? qsTr(" generation") : qsTr(" generations"))
 
         speedSpinBox.onValueChanged:
         {
-            if (speedSlider.value != speedSpinBox.value)
+            if (speedSlider.value !== speedSpinBox.value)
             {
                 simulationTimer.interval = 1000 / speedSpinBox.value;
                 speedSlider.value = speedSpinBox.value;
@@ -217,7 +217,7 @@ ApplicationWindow
 
         speedSlider.onValueChanged:
         {
-            if (speedSpinBox.value != speedSlider.value)
+            if (speedSpinBox.value !== speedSlider.value)
             {
                 simulationTimer.interval = 1000 / speedSlider.value;
                 speedSpinBox.value = speedSlider.value;
@@ -274,7 +274,7 @@ ApplicationWindow
     onHeightChanged: redrawTimer.start()
     Component.onCompleted:
     {
-        if (Qt.platform.os != "osx") globalMenuBar.window = null;
+        if (Qt.platform.os !== "osx") globalMenuBar.window = null;
         redrawTimer.start();
     }
 }

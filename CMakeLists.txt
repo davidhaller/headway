@@ -10,8 +10,8 @@ qt_standard_project_setup(REQUIRES 6.9)
 
 set(HEADWAY_CXX_FILES
     file.hpp
-    jsonfile.cpp
     jsonfile.hpp
+    jsonfile.cpp
     xmlfile.hpp
     xmlfile.cpp
     matrix.hpp
