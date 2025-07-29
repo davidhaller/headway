@@ -4,30 +4,24 @@
 
 #include "world.hpp"
 
-static void configure(QApplication* application, QTranslator* translator)
+int main(int argc, char** argv)
 {
-    application->setApplicationName("Headway");
-    application->setApplicationVersion(QString::number(HEADWAY_VERSION));
+    QApplication application(argc, argv);
+    application.setApplicationName(HEADWAY_NAME);
+    application.setApplicationVersion(QString::number(HEADWAY_VERSION));
 
     const QLocale locale = QLocale::system();
     const QLocale::Language language = locale.language();
     const QString languageCode = QLocale::languageToCode(language);
 
-    if (!translator->load(languageCode, ":/i18n") && languageCode != "C" && languageCode != "en")
-        qWarning() << "No translation available for " + QLocale::languageToString(language) + ", using English as fallback language.";
-    else application->installTranslator(translator);
-
-    qmlRegisterType<Headway::World>("Headway", HEADWAY_VERSION_MAJOR, HEADWAY_VERSION_MINOR, "World");
-}
-
-int main(int argc, char** argv)
-{
-    QApplication application(argc, argv);
     QTranslator translator;
-    QQmlApplicationEngine engine;
+    if (!translator.load(languageCode, ":/i18n") && languageCode != "C" && languageCode != "en")
+        qWarning() << "No translation available for " + QLocale::languageToString(language) + ", using English as fallback language.";
+    else application.installTranslator(&translator);
 
-    configure(&application, &translator);
-    engine.loadFromModule("io.github.davidhaller.headway", "MainWindow");
+    qmlRegisterType<Headway::World>(HEADWAY_NAME, HEADWAY_VERSION_MAJOR, HEADWAY_VERSION_MINOR, "World");
+    QQmlApplicationEngine engine;
+    engine.loadFromModule(HEADWAY_URI, "MainWindow");
 
     if (engine.rootObjects().isEmpty())
         return EXIT_FAILURE;

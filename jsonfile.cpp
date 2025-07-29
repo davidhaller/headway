@@ -22,46 +22,46 @@ JsonFile::JsonFile(const QString& filePath)
         throw FileException(QStringLiteral("Failed to parse file.\n\n") + error.errorString());
 
     if (!document.isObject())
-        throw FileException("Document is malformed.");
+        throw FileException(QStringLiteral("Document is malformed."));
 
     const QJsonObject object = document.object();
 
-    if (!object.contains("world"))
-        throw FileException("Missing world element.");
+    if (!object.contains(QStringLiteral("world")))
+        throw FileException(QStringLiteral("Missing world element."));
 
-    const QJsonValue rootValue = object.value("world");
+    const QJsonValue rootValue = object.value(QStringLiteral("world"));
 
     if (!rootValue.isObject())
-        throw FileException("World element is malformed.");
+        throw FileException(QStringLiteral("World element is malformed."));
 
     const QJsonObject root = rootValue.toObject();
 
-    if (!root.contains("width"))
-        throw FileException("Width attribute missing.");
+    if (!root.contains(QStringLiteral("width")))
+        throw FileException(QStringLiteral("Width attribute missing."));
 
-    if (!root.contains("height"))
-        throw FileException("Height attribute missing.");
+    if (!root.contains(QStringLiteral("height")))
+        throw FileException(QStringLiteral("Height attribute missing."));
 
     bool ok = true;
 
-    width = root.value("width").toString().toUInt(&ok);
-    if (!ok) throw FileException("Width attribute invalid.");
+    width = root.value(QStringLiteral("width")).toString().toUInt(&ok);
+    if (!ok) throw FileException(QStringLiteral("Width attribute invalid."));
 
-    height = root.value("height").toString().toUInt(&ok);
-    if (!ok) throw FileException("Height attribute invalid.");
+    height = root.value(QStringLiteral("height")).toString().toUInt(&ok);
+    if (!ok) throw FileException(QStringLiteral("Height attribute invalid."));
 
-    if (!root.contains("generations"))
+    if (!root.contains(QStringLiteral("generations")))
         generations = 0;
     else
     {
-        generations = root.value("generations").toString().toULongLong(&ok);
-        if (!ok) throw FileException("Generations attribute invalid.");
+        generations = root.value(QStringLiteral("generations")).toString().toULongLong(&ok);
+        if (!ok) throw FileException(QStringLiteral("Generations attribute invalid."));
     }
 
-    const QJsonValue array = root.value("cells");
+    const QJsonValue array = root.value(QStringLiteral("cells"));
 
     if (!array.isArray())
-        throw FileException("Cells array missing.");
+        throw FileException(QStringLiteral("Cells array missing."));
 
     cells = array.toArray();
     iterator = cells.begin();
@@ -73,23 +73,23 @@ void JsonFile::readCoordinate(quint32& x, quint32& y)
     ++iterator;
 
     if (!value.isObject())
-        throw FileException("Cell value is not an object.");
+        throw FileException(QStringLiteral("Cell value is not an object."));
 
     const QJsonObject cell = value.toObject();
 
-    if (!cell.contains("x"))
-        throw FileException("Missing x coordinate.");
+    if (!cell.contains(QStringLiteral("x")))
+        throw FileException(QStringLiteral("Missing x coordinate."));
 
-    if (!cell.contains("y"))
-        throw FileException("Missing y coordinate.");
+    if (!cell.contains(QStringLiteral("y")))
+        throw FileException(QStringLiteral("Missing y coordinate."));
 
     bool ok = true;
 
-    x = cell.value("x").toString().toUInt(&ok);
-    if (!ok) throw FileException("x coordinate has invalid format.");
+    x = cell.value(QStringLiteral("x")).toString().toUInt(&ok);
+    if (!ok) throw FileException(QStringLiteral("x coordinate has invalid format."));
 
-    y = cell.value("y").toString().toUInt(&ok);
-    if (!ok) throw FileException("y coordinate has invalid format.");
+    y = cell.value(QStringLiteral("y")).toString().toUInt(&ok);
+    if (!ok) throw FileException(QStringLiteral("y coordinate has invalid format."));
 
 }
 
@@ -109,9 +109,9 @@ void JsonFile::write(const QString& filePath, const Headway::World& biotope)
     QJsonObject object;
 
     QJsonObject root;
-    root.insert("width", QString::number(biotope.width()));
-    root.insert("height", QString::number(biotope.height()));
-    root.insert("generations", QString::number(biotope.generations()));
+    root.insert(QStringLiteral("width"), QString::number(biotope.width()));
+    root.insert(QStringLiteral("height"), QString::number(biotope.height()));
+    root.insert(QStringLiteral("generations"), QString::number(biotope.generations()));
 
     QJsonArray cells;
 
@@ -122,16 +122,16 @@ void JsonFile::write(const QString& filePath, const Headway::World& biotope)
             if (biotope.isAlive(x, y)) // save alive cells only
             {
                 QJsonObject item;
-                item.insert("x", QString::number(x));
-                item.insert("y", QString::number(y));
+                item.insert(QStringLiteral("x"), QString::number(x));
+                item.insert(QStringLiteral("y"), QString::number(y));
 
                 cells.append(item);
             }
         }
     }
 
-    root.insert("cells", cells);
-    object.insert("world", root);
+    root.insert(QStringLiteral("cells"), cells);
+    object.insert(QStringLiteral("world"), root);
     document.setObject(object);
 
     QFile fileHandle(filePath);

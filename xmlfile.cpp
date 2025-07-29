@@ -18,27 +18,27 @@ XmlFile::XmlFile(const QString& filePath)
 
     const QDomElement root = document.documentElement();
 
-    if (root.tagName() != "world")
-        throw FileException("Unknown root element.");
+    if (root.tagName() != QStringLiteral("world"))
+        throw FileException(QStringLiteral("Unknown root element."));
 
-    if (!root.hasAttribute("width"))
-        throw FileException("Width attribute missing.");
+    if (!root.hasAttribute(QStringLiteral("width")))
+        throw FileException(QStringLiteral("Width attribute missing."));
 
-    if (!root.hasAttribute("height"))
-        throw FileException("Height attribute missing.");
+    if (!root.hasAttribute(QStringLiteral("height")))
+        throw FileException(QStringLiteral("Height attribute missing."));
 
     bool ok = true;
 
-    width = root.attribute("width", "invalid").toUInt(&ok);
-    if (!ok) throw FileException("Width attribute invalid.");
+    width = root.attribute(QStringLiteral("width"), QStringLiteral("invalid")).toUInt(&ok);
+    if (!ok) throw FileException(QStringLiteral("Width attribute invalid."));
 
-    height = root.attribute("height", "invalid").toUInt(&ok);
-    if (!ok) throw FileException("Height attribute invalid.");
+    height = root.attribute(QStringLiteral("height"), QStringLiteral("invalid")).toUInt(&ok);
+    if (!ok) throw FileException(QStringLiteral("Height attribute invalid."));
 
-    generations = root.attribute("generations", "0").toULongLong(&ok);
-    if (!ok) throw FileException("Generations attribute invalid.");
+    generations = root.attribute(QStringLiteral("generations"), 0).toULongLong(&ok);
+    if (!ok) throw FileException(QStringLiteral("Generations attribute invalid."));
 
-    cells = root.elementsByTagName("cell");
+    cells = root.elementsByTagName(QStringLiteral("cell"));
 }
 
 void XmlFile::readCoordinate(quint32& x, quint32& y)
@@ -47,26 +47,26 @@ void XmlFile::readCoordinate(quint32& x, quint32& y)
     ++index;
 
     if (node.isNull())
-        throw FileException("No more coordinates to read.");
+        throw FileException(QStringLiteral("No more coordinates to read."));
 
     const QDomElement elem = node.toElement();
 
     if (elem.isNull())
-        throw FileException("Cell node is not an element type.");
+        throw FileException(QStringLiteral("Cell node is not an element type."));
 
-    if (!elem.hasAttribute("x"))
-        throw FileException("Missing x coordinate.");
+    if (!elem.hasAttribute(QStringLiteral("x")))
+        throw FileException(QStringLiteral("Missing x coordinate."));
 
-    if (!elem.hasAttribute("y"))
-        throw FileException("Missing y coordinate.");
+    if (!elem.hasAttribute(QStringLiteral("y")))
+        throw FileException(QStringLiteral("Missing y coordinate."));
 
     bool ok = true;
 
-    x = elem.attribute("x", "invalid").toUInt(&ok);
-    if (!ok) throw FileException("x coordinate has invalid format.");
+    x = elem.attribute(QStringLiteral("x"), QStringLiteral("invalid")).toUInt(&ok);
+    if (!ok) throw FileException(QStringLiteral("x coordinate has invalid format."));
 
-    y = elem.attribute("y", "invalid").toUInt(&ok);
-    if (!ok) throw FileException("y coordinate has invalid format.");
+    y = elem.attribute(QStringLiteral("y"), QStringLiteral("invalid")).toUInt(&ok);
+    if (!ok) throw FileException(QStringLiteral("y coordinate has invalid format."));
 }
 
 bool XmlFile::hasNext() const noexcept
@@ -82,11 +82,11 @@ void XmlFile::rewind() noexcept
 void XmlFile::write(const QString& filePath, const Headway::World& biotope)
 {
     QDomDocument document;
-    QDomElement root = document.createElement("world");
+    QDomElement root = document.createElement(QStringLiteral("world"));
 
-    root.setAttribute("width", QString::number(biotope.width()));
-    root.setAttribute("height", QString::number(biotope.height()));
-    root.setAttribute("generations", QString::number(biotope.generations()));
+    root.setAttribute(QStringLiteral("width"), QString::number(biotope.width()));
+    root.setAttribute(QStringLiteral("height"), QString::number(biotope.height()));
+    root.setAttribute(QStringLiteral("generations"), QString::number(biotope.generations()));
 
     document.appendChild(root);
 
@@ -96,9 +96,9 @@ void XmlFile::write(const QString& filePath, const Headway::World& biotope)
         {
             if (biotope.isAlive(x, y)) // save alive cells only
             {
-                QDomElement elem = document.createElement("cell");
-                elem.setAttribute("x", QString::number(x));
-                elem.setAttribute("y", QString::number(y));
+                QDomElement elem = document.createElement(QStringLiteral("cell"));
+                elem.setAttribute(QStringLiteral("x"), QString::number(x));
+                elem.setAttribute(QStringLiteral("y"), QString::number(y));
 
                 root.appendChild(elem);
             }

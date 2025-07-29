@@ -8,7 +8,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 find_package(Qt6 REQUIRED COMPONENTS Core LinguistTools Quick Gui Qml Quick QuickControls2 Test Widgets Xml)
 qt_standard_project_setup(REQUIRES 6.9)
 
-set(HEADWAY_CXX_FILES
+set(CXX_FILES
     file.hpp
     jsonfile.hpp
     jsonfile.cpp
@@ -19,10 +19,10 @@ set(HEADWAY_CXX_FILES
     world.cpp
 )
 
-qt_add_library(HeadwayCore STATIC ${HEADWAY_CXX_FILES})
+qt_add_library(HeadwayCore STATIC ${CXX_FILES})
 qt_add_executable(Headway main.cpp)
 
-set(HEADWAY_QML_FILES
+set(QML_FILES
     AboutDialog.qml
     Cell.qml
     CellCanvas.qml
@@ -32,16 +32,16 @@ set(HEADWAY_QML_FILES
     MainWindow.qml
 )
 
-set(HEADWAY_PROJECT_URI io.github.davidhaller.headway)
+set(PROJECT_URI io.github.davidhaller.headway)
 
 qt_add_qml_module(Headway
-    URI ${HEADWAY_PROJECT_URI}
+    URI ${PROJECT_URI}
     VERSION ${PROJECT_VERSION}
-    QML_FILES ${HEADWAY_QML_FILES}
+    QML_FILES ${QML_FILES}
 )
 
 set_target_properties(Headway PROPERTIES
-    MACOSX_BUNDLE_GUI_IDENTIFIER ${HEADWAY_PROJECT_URI}
+    MACOSX_BUNDLE_GUI_IDENTIFIER ${PROJECT_URI}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
@@ -59,9 +59,12 @@ target_link_libraries(HeadwayCore PUBLIC
 )
 target_link_libraries(Headway PRIVATE HeadwayCore)
 target_compile_definitions(Headway PRIVATE
+    HEADWAY_NAME="${PROJECT_NAME}"
+    HEADWAY_URI="${PROJECT_URI}"
     HEADWAY_VERSION=${PROJECT_VERSION}
     HEADWAY_VERSION_MAJOR=${PROJECT_VERSION_MAJOR}
-    HEADWAY_VERSION_MINOR=${PROJECT_VERSION_MINOR})
+    HEADWAY_VERSION_MINOR=${PROJECT_VERSION_MINOR}
+)
 qt_add_translations(Headway TS_FILES i18n/de.ts)
 
 #include(GNUInstallDirs)

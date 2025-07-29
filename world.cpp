@@ -24,13 +24,13 @@ bool World::createWorld(quint32 width, quint32 height, quint64 generations) noex
 {
     if (width == 0)
     {
-        emit error("Width must not be zero.");
+        emit error(QStringLiteral("Width must not be zero."));
         return false;
     }
 
     if (height == 0)
     {
-        emit error("Height must not be zero.");
+        emit error(QStringLiteral("Height must not be zero."));
         return false;
     }
 
@@ -65,7 +65,7 @@ bool World::loadFile(const QUrl& fileUrl) noexcept
 
         else
         {
-            emit error("Unknown file type.");
+            emit error(QStringLiteral("Unknown file type."));
             return false;
         }
 
@@ -108,7 +108,7 @@ bool World::saveFile(const QUrl& fileUrl) noexcept
 
         else
         {
-            emit error("Unknown file type.");
+            emit error(QStringLiteral("Unknown file type."));
             return false;
         }
     }
@@ -181,7 +181,7 @@ bool World::random(quint64 number) noexcept
 {
     if (number > matrix->size() - count())
     {
-        emit error("Number of cells exceeds available space.");
+        emit error(QStringLiteral("Number of cells exceeds available space."));
         return false;
     }
 
